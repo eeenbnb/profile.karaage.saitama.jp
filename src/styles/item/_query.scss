@@ -1,0 +1,8 @@
+@use "../val/bp.scss" as bp;
+@use "sass:map";
+
+@mixin mq-min($size) {
+  @media (max-width: map.get(bp.$breakpoints, $size)) {
+    @content;
+  }
+}

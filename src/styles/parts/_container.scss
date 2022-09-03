@@ -1,0 +1,14 @@
+@use "../item/query" as q;
+
+.container {
+  display: flex;
+  justify-content: center;
+  &__inner {
+    width: 100%;
+    max-width: 980px;
+    padding: 18px;
+    @include q.mq-min("sm") {
+      padding: 12px;
+    }
+  }
+}
