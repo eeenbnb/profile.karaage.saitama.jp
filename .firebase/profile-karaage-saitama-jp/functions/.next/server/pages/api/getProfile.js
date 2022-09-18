@@ -29,7 +29,6 @@ var external_markdown_it_default = /*#__PURE__*/__webpack_require__.n(external_m
 
 
 async function handler(req, res) {
-    const { token  } = req.query;
     const storage = external_firebase_admin_namespaceObject.storage();
     const downloadText = await storage.bucket().file("admin/profile.md").download();
     const htmlString = new (external_markdown_it_default())({
