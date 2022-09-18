@@ -1,0 +1,10 @@
+{
+  "test": {
+    "password": "test",
+    "lebel": 1
+  },
+  "super-user": {
+    "password": "admin",
+    "lebel": 1
+  }
+}

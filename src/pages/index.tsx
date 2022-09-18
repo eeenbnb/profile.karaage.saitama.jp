@@ -1,13 +1,9 @@
 import type { NextPage } from "next";
-import Container from "~/components/Container";
-import Title from "~/components/Title";
+import dynamic from "next/dynamic";
 
-const Home: NextPage = () => {
-  return (
-    <Container>
-      <Title>Coming soon</Title>
-    </Container>
-  );
-};
+const Index = dynamic(() => import("~/components/Page/Index"), {
+  ssr: false,
+});
 
+const Home: NextPage = () => <Index />;
 export default Home;
