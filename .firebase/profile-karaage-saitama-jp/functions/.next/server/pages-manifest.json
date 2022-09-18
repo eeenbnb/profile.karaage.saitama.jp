@@ -1,9 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/api/getProfile": "pages/api/getProfile.js",
-  "/": "pages/index.html",
-  "/_error": "pages/_error.js",
-  "/index2": "pages/index2.js",
-  "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
-}
