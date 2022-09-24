@@ -1,8 +1,8 @@
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
-export const state = atom<string | undefined>({
+export const state = atom<string>({
   key: "session/token",
-  default: undefined,
+  default: "",
 });
 
 export default function useSessionToken() {

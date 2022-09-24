@@ -1,28 +1,21 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { JSDOM } from "jsdom";
-import * as admin from "firebase-admin";
-import MarkdownIt from "markdown-it";
+import getFirebaseHtml from "~/lib/getFirebaseHtml";
+import getFirebaseTokens from "~/lib/getFirebaseTokens";
+import getFirebaseDecodeToken from "~/lib/getFirebaseDecodeToken";
 
 type Res = {
   __html: string;
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Res>) {
-  const storage = admin.storage();
-  const downloadText = await storage.bucket().file("admin/profile.md").download();
-  const htmlString = new MarkdownIt({
-    html: true,
-    linkify: true,
-    breaks: true,
-    typographer: true,
-  }).render(downloadText[0].toString("utf-8"));
-  // const htmlString = "<p>text</p>";
-  const tokenListDL = await storage.bucket().file("admin/token.json").download();
-  const tokenList = JSON.parse(tokenListDL[0].toString("utf-8"));
+  const htmlString = await getFirebaseHtml();
+  const tokenList: { [key: string]: number } = await getFirebaseTokens();
+  const token = await getFirebaseDecodeToken(String(req.query.token));
 
   const dom = new JSDOM(htmlString);
-  const level = String(req.query.token) in tokenList ? tokenList[String(req.query.token)] : 0;
+  const level = token in tokenList ? tokenList[token] : 0;
   const levels = Array(10 - level)
     .fill(0)
     .map((_, i) => level + 1 + i);

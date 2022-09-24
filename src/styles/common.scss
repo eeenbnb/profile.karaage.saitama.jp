@@ -1,4 +1,9 @@
 @forward "./lib/reset";
 
 @forward "./parts/container";
+@forward "./parts/setToken";
 @forward "./parts/title";
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+}
